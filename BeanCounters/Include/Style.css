@@ -1,0 +1,202 @@
+body {
+	color: white;
+	font-family: sans-serif;
+}
+.loading {
+	background-color: #0184CE;
+}
+.in-game {
+	-webkit-text-stroke: 1px black;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.loading-icon {
+	margin-left: 47.5%;
+	margin-top: 240px;
+}
+.loading-outer {
+	height: 25px;
+	margin-left: 42.06%;
+	margin-top: 10px;
+	outline: 1px solid black;
+	width: 200px;
+}
+.loading-bar-wrapper {
+	height: 15px;
+	margin-left: 5px;
+	margin-top: 5px;
+	position: absolute;
+	width: 190px;
+}
+.loading-bar {
+	background-color: white;
+	height: 100%;
+	width: 0%;
+}
+.loading-text {
+	font-size: 20px;
+	margin-top: 15px;
+	text-align: center;
+}
+.hid {
+	display: none;
+}
+.in-game {
+	background-color: black;
+}
+.menu {
+	height: 100%;
+	margin-left: 2.5%;
+	width: 95%;
+}
+.game-menu, .background {
+    height: 110%;
+    margin-left: 7%;
+    margin-top: -30px;
+}
+.start-button, .logo {
+	bottom: 17%;
+	cursor: pointer;
+	height: 95px;
+	position: absolute;
+	right: 19%;
+}
+.start-button .button {
+	height: 100%;
+}
+.start-button span {
+	font-size: 50px;
+	left: 15px;
+	position: absolute;
+	text-align: center;
+	top: 14px;
+	width: 100%;
+}
+.start-button .start {
+	left: 30px;
+	position: absolute;
+	top: 10px;
+}
+.logo {
+	bottom: 43%;
+	height: 240px;
+	right: 19.8%;
+}
+.game {
+	height: 100%;
+	margin-left: 7.3%;
+	overflow: hidden;
+	position: relative;
+	width: 85%;
+}
+.background {
+	margin-left: 0px;
+    margin-top: -20px;
+	width: 100%;
+}
+.alert {
+	font-size: 55px;
+	position: absolute;
+	top: 25%;
+	text-align: center;
+	width: 100%;
+}
+.alert.countdown {
+	color: yellow;
+    font-size: 180px;
+    top: 15%;
+}
+.platform {
+	bottom: -10px;
+	height: 125px;
+	left: -20px;
+	position: absolute;
+	z-index: 50;
+}
+.truck {
+	bottom: -25px;
+	height: 530px;
+	right: -5px;
+	position: absolute;
+	z-index: 100;
+}
+.stack {
+	bottom: 23px;
+	height: 500px;
+	left: 30px;
+	position: absolute;
+	width: 150px;
+	z-index: 50;
+}
+.stack .bag {
+	position: absolute;
+}
+.stack .bag img {
+	height: 145px;
+	transform: rotate(15deg);
+}
+.player {
+	bottom: 35px;
+	height: 245px;
+	position: absolute;
+}
+.player img {
+	height: 100%;
+	position: relative;
+}
+.player img[src$="Fish_Dead.png"], .player img[src$="Vase_Dead.png"] {
+	height: 84%;
+	top: 20%;
+}
+.player .hitbox {
+	height: 8%;
+	left: 35.5%;
+	position: absolute;
+	top: 32%;
+	width: 33%;
+}
+.player .hitbox.visible {
+	background-color: rgba(255, 255, 255, 0.7);
+}
+.badluck {
+	bottom: 10%;
+	font-size: 55px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	z-index: 20;
+}
+.scoreboard {
+	font-size: 28px;
+	height: 12%;
+	left: 6%;
+	position: absolute;
+	top: 1.5%;
+	width: 80%;
+}
+.lives {
+	margin-right: 12%;
+}
+.truck-num {
+	margin-right: 5%;
+}
+.hazard {
+	position: absolute;
+}
+.hazard.bag {
+	height: 150px;
+}
+.hazard.bag.broken {
+	height: 60px;
+}
+.hazard.anvil {
+	height: 77px;
+}
+.hazard.anvil.broken {
+	height: 90px;
+	margin-bottom: -14px;
+	margin-left: -8px;
+}
+.hazard.fish.broken {
+	margin-left: -16px;
+}
