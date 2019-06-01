@@ -11,8 +11,10 @@ body {
 	text-transform: uppercase;
 }
 .loading-icon {
+	height: 55px;
 	margin-left: 47.5%;
 	margin-top: 240px;
+	width: 55px;
 }
 .loading-outer {
 	height: 25px;
