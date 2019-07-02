@@ -24,6 +24,29 @@ function handleInput() {
 			if(r == input.A) {
 				Play()
 			}
+			break
+		case "VR":
+			if(p == input.A) {
+				if($(".vr-setup").length) {
+					var done = false
+					$(".vr-setup").fadeOut("slow", function() {
+						if(!done) {
+							done = true
+							$(".left-eye").html('<div class="how-to" style="display:none">Press <img class="vr-go" src="Assets/Start.png"> to exit VR Mode<br>at any time. <img class="ok" src="Assets/Start.png"></div>')
+							$(".how-to").delay(200).fadeIn("fast")
+							setTimeout(function() {
+								$(".ok").fadeIn("slow", function() {
+									$(this).addClass("flash")
+								})
+							}, 1300)
+						}
+					})
+				}
+				else if($(".ok.flash").length) {
+					VRStart()
+				}
+			}
+			break
 	}
 	
 	if(p == input.B) {
@@ -38,22 +61,24 @@ function handleInput() {
 	}
 }
 
-// Handle keyboard input
+// Allow mouse controls on PC
 if(!device.isSwitch) {
-	$(window).keydown(function(e) {
-		if(e.which == 37) {
-			moving = 1
+	$("body").on("mousemove", ".game", function(e) {
+		if(app.currentState() == "Game") {
+			if(!dead && $(".truck.ready").length) {
+				playerPos = e.pageX - 225
+				// Keep the player in the boundaries
+				if(playerPos < 90) {
+					// Reset them to left maximum
+					playerPos = 90
+				}
+				else if(playerPos > 680) {
+					// Reset to right maximum
+					playerPos = 680
+				}
+			}
 		}
-		else if(e.which == 39) {
-			moving = 2
-		}
-		else if(e.which == 32) {
-			DropBag()
-		}
-	})
-	$(window).keyup(function(e) {
-		if(e.which == 37 || e.which == 39) {
-			moving = 0
-		}
+	}).on("click", ".game", function() {
+		DropBag()
 	})
 }

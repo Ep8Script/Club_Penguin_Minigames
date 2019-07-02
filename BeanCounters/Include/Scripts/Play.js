@@ -1,66 +1,70 @@
-var dead = false, holding = 0, life = 3, moving = 0, playerPos = 360, stackHeight = 0, truck = 1, score = 0
+var dead = false, holding = 0, life = 3, moving = 0, stackHeight = 0, truck = 1, score = 0
 
+// Normal play
 function Play() {
 	// Create the game arena
+	playerPos = 360
 	app.setState("Game")
-	$(".menu").addClass("game").removeClass("menu")
+	$(".menu").toggleClass("game menu")
 	$(".game-menu").addClass("background").removeClass("game-menu").attr("src", "Assets/Background.png")
-	$(".start-button, .logo").remove()
+	$(".start-button, .vr-start, .logo").remove()
 	$(".background").after('<div class="alert" style="display:none">Truck Unloaded!!</div>')
 	$(".alert").after('<img class="platform" src="Assets/Platform.png">')
 	$(".platform").after('<div class="stack"></div>')
-	$(".stack").after('<div class="player"><div class="hitbox"></div><img src="Assets/Player/0.png"></div>')
+	$(".stack").after('<div class="player" style="left: 360px;"><div class="hitbox"></div><img src="Assets/Player/0.png"></div>')
 	$(".player").after('<div class="badluck" style="display:none">Try Again...</div>')
 	$(".badluck").after('<div class="scoreboard">Lives: <span class="lives">3</span> Truck: <span class="truck-num">1</span> Score: <span class="score">0</span></div>')
 	$(".scoreboard").after('<img class="truck ready" src="Assets/Truck.png">')
+	addBags()
+	StartHazards()
+}
 
+function addBags() {
 	// Add the stacked bags and position them
 	var bottom = 5
 	$.each([1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,19,20], function() {
-		$(".stack").append('<div class="bag hid" style="bottom:'+bottom+'px"><img src="Assets/Hazards/Bag_3.png"></div>')
-		var b = $(".stack .bag").last()
+		$(".stack").first().append('<div class="bag hid" style="bottom:'+bottom+'px"><img src="Assets/Hazards/Bag_3.png"></div>')
+		var b = $(".stack").first().find(".bag").last()
 		if(device.randomNum(1)) {
 			b.css({left:device.randomNum(-3,1),transform:"scale(-1, 1)"})
 		}
 		else {
-			b.css("left",device.randomNum(9,14)+"px")
+			b.css("left",device.randomNum(9,14))
 		}
 		b.find("img").css("transform", "rotate("+device.randomNum(13,15)+"deg)")
-		bottom += 17
+		bottom += isVR?11:17
 	})
-	
-	StartHazards()
 }
 
 app.mainLoop(function() {
 	if(app.currentState() == "Game") {
-		$(".player").css("left", playerPos+"px")
+		$(".player").first().css("left", playerPos+"px")
 		if(!dead && $(".truck.ready").length) {
 			// Update the player sprite and position
-			$(".player img").attr("src", "Assets/Player/"+holding+".png")
+			$(".player img").first().attr("src", "Assets/Player/"+holding+".png")
 			if(moving == 1) {
 				// Moving left
-				playerPos -= 8
+				playerPos -= 16
 			}
 			else if(moving == 2) {
 				// Moving right
-				playerPos += 8
+				playerPos += 16
 			}
 			
 			// Keep the player in the boundaries
-			if(playerPos < 90) {
+			if(playerPos < (isVR?27:90)) {
 				// Reset them to left maximum
-				playerPos = 90
+				playerPos = isVR?27:90
 			}
-			else if(playerPos > 680) {
+			else if(playerPos > (isVR?360:680)) {
 				// Reset to right maximum
-				playerPos = 680
+				playerPos = isVR?360:680
 			}
 			
 			// Loop through each falling hazard / bag
-			$(".hazard").each(function() {
+			$(".game").first().find(".hazard").each(function() {
 				// Check if the player's hitbox is colliding
-				if(collidesWith($(".hitbox")[0], this) && $(this).attr("fallin")) {
+				if(collidesWith($(".hitbox").first()[0], this) && $(this).attr("fallin")) {
 					// Remove the hazard
 					$(this).remove()
 					// Check which hazard it is
@@ -87,8 +91,8 @@ app.mainLoop(function() {
 			})
 			
 			// Display the current stack correctly
-			if($(".stack .bag:not(.hid)").length !== stackHeight) {
-				$(".stack .bag").each(function(i) {
+			if($(".game").first().find(".stack .bag:not(.hid)").length !== stackHeight) {
+				$(".stack").first().find(".bag").each(function(i) {
 					if(i+1 <= stackHeight) {
 						$(this).removeClass("hid")
 					}
@@ -99,22 +103,22 @@ app.mainLoop(function() {
 			}
 		}
 		// Update the scoreboard
-		$(".lives").text(life)
-		$(".truck-num").text(truck)
-		$(".score").text(score)
+		$(".lives").first().text(life)
+		$(".truck-num").first().text(truck)
+		$(".score").first().text(score)
 		
 	}
 	handleInput()
-})
+}, false, 25)
 
 function Dead(type) {
 	dead = true
-	$(".player img").attr("src", "Assets/Player/"+type+"_Dead.png")
+	$(".player img").first().attr("src", "Assets/Player/"+type+"_Dead.png")
 	clearInterval(spawnInterval)
 	// Check if any lives are left
 	if(life) {
-		$(".badluck").show()
-		$(".alert").addClass("countdown").text(3).delay(100).fadeIn(200, function() {
+		$(".badluck").first().show()
+		$(".alert").first().addClass("countdown").text(3).delay(100).fadeIn(200, function() {
 			$(this).delay(600).fadeOut(200, function() {
 				$(this).text(2).fadeIn(200, function() {
 					$(this).delay(600).fadeOut(200, function() {
@@ -122,10 +126,9 @@ function Dead(type) {
 							$(this).delay(600).fadeOut(200, function() {
 								// Reset the screen
 								$(this).hide().removeClass("countdown").text("Truck Unloaded!!")
-								$(".badluck").hide()
+								$(".badluck").first().hide()
 								dead = false
 								holding = 0
-								playerPos = 360
 								StartHazards()
 							})
 						})
@@ -145,7 +148,7 @@ function Dead(type) {
 
 // Discaring a bag onto the platform
 function DropBag() {
-	if(holding && playerPos < 135 && $(".truck.ready").length) {
+	if(holding && playerPos < (isVR?46:135) && $(".truck.ready").length) {
 		// Remove a bag from the hand
 		holding -= 1
 		// Add to the score
@@ -156,40 +159,40 @@ function DropBag() {
 		if(stackHeight == 20) {
 			if(truck < 5) {
 				// Display text
-				$(".alert").show()
+				$(".alert").first().show()
 				// Stop the hazards
 				clearInterval(spawnInterval)
 				// Make the truck leave
 				var truckLeave = function() {
-					if(parseInt($(".truck").css("right")) <= -316) {
+					if(parseInt($(".truck").first().css("right")) <= -316) {
 						// Hide the text and change it
-						$(".alert").hide().text("Next Truck!!")
+						$(".alert").first().hide().text("Next Truck!!")
 						// Make the truck come back
 						setTimeout(truckLoad, 200)
 					}
 					else {
-						$(".truck").removeClass("ready").css("right", "-=9")
+						$(".truck").first().removeClass("ready").css("right", "-=9")
 						setTimeout(truckLeave, 40)
 					}
 				}
 				setTimeout(truckLeave, 8)
 				var truckLoad = function() {
-					if(parseInt($(".truck").css("right")) >= -5) {
+					if(parseInt($(".truck").first().css("right")) >= -5) {
 						// Hide the text again
 						$(".alert").hide().text("Truck Unloaded!!")
 						// Reset all the variables and start the next level
 						holding = 0
 						moving = 0
-						playerPos = 360
+						playerPos = isVR?200:360
 						stackHeight = 0
 						truck++
-						$(".truck").addClass("ready")
+						$(".truck").first().addClass("ready")
 						StartHazards()
 					}
 					else {
 						// Show the text
-						$(".alert").show()
-						$(".truck").css("right", "+=9")
+						$(".alert").first().show()
+						$(".truck").first().css("right", "+=9")
 						setTimeout(truckLoad, 40)
 					}
 				}
@@ -208,7 +211,6 @@ function GameOver() {
 	holding = 0
 	life = 3
 	moving = 0
-	playerPos = 360
 	stackHeight = 0
 	truck = 1
 	score = 0

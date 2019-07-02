@@ -1,4 +1,4 @@
-var spawnInterval
+var spawnInterval = setInterval(function(){},100000)
 
 // Spawn a hazard every second
 function StartHazards() {
@@ -25,7 +25,7 @@ function StartHazards() {
 // Create a new hazard
 function newHazard() {
 	var anvil = {name:"Anvil",chance:[],min:600,max:725}
-	var bag = {name:"Bag",chance:[],min:200,max:725}
+	var bag = {name:"Bag",chance:[],min:isVR?115:200,max:isVR?410:725}
 	var fish = {name:"Fish",chance:[],min:200,max:340}
 	var vase = {name:"Vase",chance:[],min:415,max:575}
 	var hazards = []
@@ -74,9 +74,9 @@ function newHazard() {
 	if(hazard) {
 		var img = hazard.name=="Bag"?"Bag_1":hazard.name
 	
-		$(".game").append('<img class="hazard '+hazard.name.toLowerCase()+'" name="'+hazard.name+'" style="bottom: 320px; left: 900px;" src="Assets/Hazards/'+img+'.png">')
+		$(".game").first().append('<img class="hazard '+hazard.name.toLowerCase()+'" name="'+hazard.name+'" style="bottom: '+(isVR?160:320)+'px; left: '+(isVR?515:900)+'px;" src="Assets/Hazards/'+img+'.png">')
 		 
-		var $h = $(".hazard").last()
+		var $h = $(".game").first().find(".hazard").last()
 		var fall = 4
 		var launchTo = device.randomNum(hazard.min,hazard.max)
 		if(launchTo > 470) {
@@ -100,7 +100,7 @@ function newHazard() {
 			}
 			else if($h.attr("fallin")) {
 				if($h.attr("fallin") == fall) {
-					if(parseInt($h.css("bottom")) <= 25) {
+					if(parseInt($h.css("bottom")) <= isVR?6:25) {
 						$h.addClass("broken")
 						if(hazard.name != "Life") {
 							$h.attr("src", "Assets/Hazards/"+hazard.name+"_Broken.png")

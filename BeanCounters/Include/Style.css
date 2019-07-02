@@ -1,6 +1,7 @@
 body {
 	color: white;
 	font-family: sans-serif;
+	user-select: none;
 }
 .loading {
 	background-color: #0184CE;
@@ -56,17 +57,26 @@ body {
     margin-left: 7%;
     margin-top: -30px;
 }
-.start-button, .logo {
-	bottom: 17%;
+.start-button, .logo, .vr-start {
+	bottom: 23%;
 	cursor: pointer;
 	height: 95px;
 	position: absolute;
 	right: 19%;
 }
-.start-button .button {
+.vr-start {
+	bottom: 6%;
+	display: none;
+}
+/*@media(-webkit-nintendo-switch-device-mode: -webkit-nintendo-switch-device-handheld) {
+	.vr-start {
+		display: block;
+	}
+}*/
+.start-button .button, .vr-start .button {
 	height: 100%;
 }
-.start-button span {
+.start-button span, .vr-start span {
 	font-size: 50px;
 	left: 15px;
 	position: absolute;
@@ -74,7 +84,11 @@ body {
 	top: 14px;
 	width: 100%;
 }
-.start-button .start {
+.vr-start span {
+	left: -1px;
+	top: 15px;
+}
+.start-button .start, .vr-start .start {
 	left: 30px;
 	position: absolute;
 	top: 10px;
@@ -84,12 +98,15 @@ body {
 	height: 240px;
 	right: 19.8%;
 }
-.game {
+.game, .vr-setup {
 	height: 100%;
 	margin-left: 7.3%;
 	overflow: hidden;
 	position: relative;
 	width: 85%;
+}
+.vr-setup {
+	text-align: center;
 }
 .background {
 	margin-left: 0px;
@@ -159,6 +176,7 @@ body {
 }
 .player .hitbox.visible {
 	background-color: rgba(255, 255, 255, 0.7);
+	z-index: 80;
 }
 .badluck {
 	bottom: 10%;
@@ -201,4 +219,205 @@ body {
 }
 .hazard.fish.broken {
 	margin-left: -16px;
+}
+.vr-help {
+	-webkit-box-shadow: 25px 25px 50px 0 black inset, -25px -25px 50px 0 black inset;
+	background-color: #0184CE;
+	border-radius: 100%;
+	display: inline-block;
+	height: 150%;
+	margin-top: -15%;
+	text-align: center;
+	width: 97%;
+}
+.headset {
+	display: inline-block;
+	height: 230px;
+	margin-top: 350px;
+}
+.help-text, .vr-final {
+	-webkit-text-stroke: initial;
+	font-size: 25px;
+	font-weight: normal;
+	margin-top: 45px;
+	text-transform: initial;
+}
+.vr {
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	width: 49%;
+}
+.vr.right {
+	bottom: 100%;
+	float: right;
+}
+.vr-viewing {
+	border-radius: 100%;
+	display: block;
+	float: left;
+	height: 97%;
+	overflow: hidden;
+	position: relative;
+	width: 700px;
+}
+.right-eye {
+	float: right;
+}
+.vr-viewing-shadow {
+	-webkit-box-shadow: 25px 25px 50px 0 black inset, -25px -25px 50px 0 black inset;
+	border-radius: 100%;
+	height: 97%;
+	position: absolute;
+	width: 700px;
+	z-index: 150;
+}
+.right-shadow {
+	right: 0px;
+}
+.vr .vr-setup {
+	background-color: #0184CE;
+}
+.vr .headset {
+	height: 140px;
+	margin-top: 158px;
+	transform: rotate3d(1, 0, 0, 20deg);
+}
+.vr-final {
+	font-size: 20px;
+	margin-top: 39px;
+}
+.right-eye .headset {
+	margin-left: 2px;
+}
+.right-eye .vr-final {
+	margin-left: 15px;
+}
+.vr-go {
+	display: inline;
+	filter: invert(1);
+	height: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+	transform: scale(1.9);
+}
+.how-to {
+	-webkit-text-stroke: initial;
+	font-size: 27px;
+	font-weight: normal;
+	margin-top: 294px;
+	text-align: center;
+	text-transform: initial;
+}
+.how-to .vr-go {
+	margin-bottom: 2px;
+	transform: scale(2.3) rotate(90deg);
+}
+.right-eye .how-to {
+	margin-right: 10px;
+}
+@keyframes continue {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.ok {
+	display: none;
+    filter: invert(1);
+    margin-left: 22px;
+    margin-top: 2px;
+    position: absolute;
+}
+.ok.flash {
+	animation: continue 3s linear 0.5s infinite;
+}
+.right-eye .ok {
+	margin-left: 11px;
+}
+.vr .game {
+	height: 52%;
+	margin-left: 7.6%;
+	margin-top: 160px;
+	transform: scale(0.8);
+}
+.vr .background {
+	height: auto;
+	margin-left: -45px;
+	margin-top: -83px;
+	position: relative;
+	width: 123%;
+}
+.right-eye .background {
+	left: 11.5px;
+}
+.vr .alert {
+	font-size: 42px;
+	z-index: 120;
+}
+.right-eye .alert {
+	margin-left: -17px;
+}
+.vr .platform {
+	height: 63px;
+}
+.right-eye .platform {
+	left: -27px;
+}
+.vr .stack {
+	bottom: 2px;
+	height: 180px;
+	left: 1px;
+	width: 75px;
+}
+.right-eye .stack {
+	left: -5px;
+}
+.vr .stack .bag img {
+	height: 75px;
+}
+.vr .player {
+	bottom: 13px;
+	height: 130px;
+}
+.vr .player .hitbox {
+	left: 27.5%;
+	top: 31%;
+	width: 48%;
+}
+.right-eye .player {
+	margin-left: -4px;
+}
+.vr .badluck {
+	bottom: 12%;
+	margin-left: -17px;
+	z-index: 120;
+}
+.vr .scoreboard {
+	font-size: 22px;
+	left: 18%;
+	top: 9%;
+	width: 65%;
+}
+.right-eye .scoreboard {
+	left: 17.7%;
+}
+.vr .truck {
+	bottom: -3px;
+	height: 260px;
+	right: -14px;
+}
+.right-eye .truck {
+	right: -7px;
+}
+.right-eye .hazard {
+	margin-left: -4px;
+}
+.vr .hazard.bag {
+	height: 75px;
 }
