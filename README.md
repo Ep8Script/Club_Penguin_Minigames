@@ -24,3 +24,5 @@ Recreating a few of Club Penguin's minigames in HTML5.
 	 * Reduced the frame rate from 60 to 25 in an attempt to cause less lag.
 	 * Bug fixes:
 		 * New hazards will no longer spawn when the truck is swapping between levels.
+### v1.1.1
+* Fixed some issues in both minigames.

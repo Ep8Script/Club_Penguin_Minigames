@@ -182,7 +182,7 @@ function movePlayer($p) {
 	$p.attr("speed", speed)
 	
 	// Update players position
-	var pc = (($p.attr("left")||0) / TileMap[TileMap.length]-1) * 100
+	var pc = (($p.attr("left")||0) / TileMap[TileMap.length-1].l) * 100
 	// This shouldn't be necessary, but it corrects disrepancy between the players and the background
 	if(speed >= maxSpeed / 2 && pc > 42) {
 		speed += .0166*speed
@@ -417,9 +417,8 @@ function playerTurn(player, dir) {
 // After hitting the finish line
 var placement = 0
 function Finished() {
-	if(!$("audio").last().attr("autoplay")) {
-		$("audio").first().remove()
-		$("audio").last().attr("autoplay", "autoplay")
+	if(!$("audio[src*='Finish']").length) {
+		$("audio").removeAttr("loop").attr("src", "Assets/Finish.mp3")
 		$("audio").last().get(0).volume = 0.35
 	}
 	setTimeout(function() {
