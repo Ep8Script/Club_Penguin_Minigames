@@ -2,8 +2,8 @@
 Recreating a few of Club Penguin's minigames in HTML5.
 
 # Available games
-* [Bean Counters](https://clubpenguin-minigames.ep8script.com/BeanCounters)
-* [Sled Racing](https://clubpenguin-minigames.ep8script.com/SledRacing)
+* [Bean Counters](https://ep8script.github.io/Club_Penguin_Minigames/BeanCounters)
+* [Sled Racing](https://ep8script.github.io/Club_Penguin_Minigames/SledRacing)
 
 # Changelog
 ### v1.0.0
