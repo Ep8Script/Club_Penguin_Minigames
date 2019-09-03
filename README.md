@@ -18,7 +18,7 @@ Recreating a few of Club Penguin's minigames in HTML5.
 	 * Added VR Mode.
 		 * By playing on the Switch in handheld mode, the VR option can be selected from the main menu, allowing the user to play the game in 3D with Nintendo Labo VR Goggles.
 		 * The view is not moveable and has a similar effect to viewing from a 3D TV.
-		 * *VR Mode is current disabled while it continues to be improved. Check back at a later update for its availability!*
+		 * *VR Mode is currently disabled while it continues to be improved. Check back at a later update for its availability!*
 	 * Added mouse controls to PC. Move the mouse left and right to control the player and click to release bags to the side.
 		 * This change more closely reflects the original game.
 	 * Reduced the frame rate from 60 to 25 in an attempt to cause less lag.
