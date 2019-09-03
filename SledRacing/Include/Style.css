@@ -7,34 +7,37 @@ body {
 	font-family: sans-serif;
 	user-select: none;
 }
-.loading {
-	background-color: #0184CE;
-}
 .sorry {
 	background-color: black;
 	font-size: 110px;
 	text-align: center;
 }
-.in-game {
-	-webkit-text-stroke: 1px #0184CE;
-	background-color: black;
-	font-weight: bold;
+.loading {
+	background-color: #0184CE;
+}
+.loading-wrapper {
+	bottom: 25%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+}
+.loading-flex {
+	display: flex;
+	flex-direction: column;
 }
 .loading-icon {
 	height: 55px;
-	margin-left: 47.5%;
-	margin-top: 240px;
+	margin: 8px auto;
 	width: 55px;
 }
 .big-screen .loading-icon {
 	height: 55px;
-	margin-left: 49.99%;
+	margin-left: 50%;
 	margin-top: 19%;
 }
 .loading-outer {
 	height: 25px;
-	margin-left: 42.06%;
-	margin-top: 10px;
+	margin: auto;
 	outline: 1px solid black;
 	width: 200px;
 }
@@ -54,12 +57,19 @@ body {
 	width: 0%;
 }
 .loading-text {
+	bottom: 15px;
 	font-size: 20px;
-	margin-top: 15px;
+	margin-top: 32px;
+	position: relative;
 	text-align: center;
 }
 .big-screen .loading-text {
 	width: 102.15%;
+}
+.in-game {
+	-webkit-text-stroke: 1px #0184CE;
+	background-color: black;
+	font-weight: bold;
 }
 .hid {
 	display: none;

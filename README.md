@@ -26,3 +26,10 @@ Recreating a few of Club Penguin's minigames in HTML5.
 		 * New hazards will no longer spawn when the truck is swapping between levels.
 ### v1.1.1
 * Fixed some issues in both minigames.
+### v1.1.2
+* Adjusted the loading screens in both minigames to be properly centered.
+* Updated Bean Counters.
+	* Changed the title screen art to one of much higher resolution.
+	* Disabled some assets from being able to be dragged.
+	* Removed the pointer icon from the minigame logo.
+* Big thanks to [Aurorum](https://github.com/Aurorum) for these improvements!
