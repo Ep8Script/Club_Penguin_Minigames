@@ -109,7 +109,7 @@ app.mainLoop(function() {
 		
 	}
 	handleInput()
-}, false, 25)
+}, {fps:25})
 
 function Dead(type) {
 	dead = true

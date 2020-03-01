@@ -87,4 +87,4 @@ app.mainLoop(function() {
 	
 	// Reset the zoom level
 	$("body").css("zoom", innerWidth / outerWidth)
-}, true)
+}, {allowCursor:true})
