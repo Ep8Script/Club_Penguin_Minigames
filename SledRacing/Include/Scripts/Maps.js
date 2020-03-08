@@ -102,12 +102,12 @@ function checkCollision(id) {
 		// Get the current tile collision map
 		var t = hillTile[pt.currentTile].map[$p.attr("x")][pt.tilePos]
 		if(t == 1 && $p.attr("me") && !$p.attr("crashed")) {
-			// Seperate if statement to avoid the player from going giant - JavaScript right?
+			// Separate if statement to avoid the player from going giant - JavaScript right?
 			// If I put them together it has a major slowdown
 			if(!$p.attr("jumping")) {
 				// The player hit an obstacle
 				$p.attr("crashed",true).attr("crash-state",1).css({"margin-left":15,"margin-top":15/XMultiplier}).find(".penguin").attr("src", "Assets/Penguin/right.png")
-				$p.attr("src", "Assets/Tube/right.png")
+				$p.find(".tube").attr("src", "Assets/Tube/right.png")
 				// Send the crash to the other players
 				if(multiplayer) {
 					server.emit("action", {type:"crash"})

@@ -91,7 +91,7 @@ server.on("player_action", (id, action) => {
 			break
 		case "crash":
 			$p.attr("crashed",true).attr("crash-state",1).css({"margin-left":15,"margin-top":15/XMultiplier}).find(".penguin").attr("src", "Assets/Penguin/right.png")
-			$p.attr("src", "Assets/Tube/right.png")
+			$p.find(".tube").attr("src", "Assets/Tube/right.png")
 			break
 		case "boost":
 			$p.attr("speed", boostSpeed)
