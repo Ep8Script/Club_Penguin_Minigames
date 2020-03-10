@@ -34,4 +34,10 @@ Recreating a few of Club Penguin's minigames in HTML5.
 	* Removed the pointer icon from the minigame logo.
 * Big thanks to [Aurorum](https://github.com/Aurorum) for these improvements!
 ### v1.1.3
-* Fixed an issue in Sled Racing causing a sprite swap to not properly occur for the first few frames of crashing.
+* Updated Sled Racing.
+	* Fixed an issue causing a sprite swap to not properly occur for the first few frames of crashing.
+### v1.1.4
+* Updated Sled Racing
+	* Added a background image which stops the game from being surrounded by boring black bars on larger screens.
+	* Fixed an issue causing the sky image to extend past the game's borders.
+* Thanks again to [Aurorum](https://github.com/Aurorum) for making these changes!

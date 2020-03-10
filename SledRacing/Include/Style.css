@@ -68,7 +68,7 @@ body {
 }
 .in-game {
 	-webkit-text-stroke: 1px #0184CE;
-	background-image: url("Assets/Background.png");
+	background-image: url("../Assets/Background.png");
 	background-size: cover;
 	font-weight: bold;
 }
@@ -90,7 +90,6 @@ body {
 	transform: scale(1.5);
 }
 .background {
-	background: rgb(0,94,139);
 	background: linear-gradient(0deg, rgba(0,94,139,1) 87%, rgba(2,81,116,1) 100%);
 	height: 99%;
 	position: absolute;
