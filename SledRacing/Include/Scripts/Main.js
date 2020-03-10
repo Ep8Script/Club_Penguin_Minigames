@@ -41,7 +41,7 @@ app.onLoad(function() {
 	var pl = a+"Players/"
 	var t = a+"Tube/"
 	// Preload all the assets
-	var pre = [a+"Clouds.png",a+"FinishLine.png",a+"MapCorner.png",a+"Sky.png",a+"Timer.png",a+"UserIcon.png",c+"1.gif",c+"2.gif",h+"20_A.png",h+"Finish.png",h+"Start.png",p+"back.png",p+"crashed.gif",p+"default.png",p+"left.png",p+"right.png",pl+"Other.png",pl+"Self.png",t+"default.png",t+"flipped.png",t+"left.png",t+"right.png",t+"shadow.png"]
+	var pre = [a+"Background.png",a+"Clouds.png",a+"FinishLine.png",a+"MapCorner.png",a+"Timer.png",a+"UserIcon.png",c+"1.gif",c+"2.gif",h+"20_A.png",h+"Finish.png",h+"Start.png",p+"back.png",p+"crashed.gif",p+"default.png",p+"left.png",p+"right.png",pl+"Other.png",pl+"Self.png",t+"default.png",t+"flipped.png",t+"left.png",t+"right.png",t+"shadow.png"]
 	for (var i = 0; i < 20; i++) { 
 		pre.push(h+i+".png")
 	}
@@ -67,6 +67,8 @@ app.onLoad(function() {
 			var audio = new Audio()
 			audio.src = file
 		})
+	}, function(percent) {
+		$(".loading-bar").css("width",percent+"%")
 	})
 })
 

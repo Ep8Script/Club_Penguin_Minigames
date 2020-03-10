@@ -40,4 +40,5 @@ Recreating a few of Club Penguin's minigames in HTML5.
 * Updated Sled Racing
 	* Added a background image which stops the game from being surrounded by boring black bars on larger screens.
 	* Fixed an issue causing the sky image to extend past the game's borders.
-* Thanks again to [Aurorum](https://github.com/Aurorum) for making these changes!
+		* Thanks again to [Aurorum](https://github.com/Aurorum) for making these changes!
+	* Fixed an issue causing the loading bar to not work at the start of the game.
