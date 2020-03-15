@@ -57,3 +57,6 @@ Recreating a few of Club Penguin's minigames in HTML5.
 * Updated Sled Racing.
 	* The loading sequence now takes place inside the minigame's box for consistency with the rest of the game.
 	* Updated the mobile device detection.
+### v2.0.1
+* Fixed an issue in Bean Counters and Pizzatron causing the cursor position to be inaccurate on larger displays.
+	* Thanks to [Maschell](https://github.com/Maschell) for the quick find!

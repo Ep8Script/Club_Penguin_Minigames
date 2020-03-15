@@ -1,7 +1,7 @@
 var pizzasMade = 0, pizzasLeft = 40, mistakes = 0, ordersMade = 0, coins = 0, tip = 0
 var conveyorNormalSpeed = 1.5, conveyorSpeed = 1.5, consecutivePizzas = 0, pizzaStart = -320, speedUp = false
 
-var bottles = ["Pizza","Hot"], ingredients = {Cheese:1,Seaweed:3,Shrimp:3,Squid:3,Fish:3}, offsetX = 250, offsetY = 150, offsetB = 8, splatAfter = 160
+var bottles = ["Pizza","Hot"], ingredients = {Cheese:1,Seaweed:3,Shrimp:3,Squid:3,Fish:3}, offsetX = 110, offsetY = 150, offsetB = 8, splatAfter = 160
 
 function StartGame() {
 	if(app.currentState() == "Main") {
@@ -16,14 +16,17 @@ function StartGame() {
 		
 		// Set the order
 		order = orders[0]
+		
+		// Get the relative mouse movement
+		StartMouse()
 	}
 }
 
 // Pick up an ingredient
-function GetIngredient(name, mouse) {
+function GetIngredient(name, mouse, offset) {
 	if(app.currentState() == "Game" && !$(".ingredient-holding:not(.dropped)").length) {
 		// Get the mouse position
-		var left = mouse.pageX - offsetX, top = mouse.pageY - offsetY
+		var left = mouse.pageX - offsetX - offset.left, top = mouse.pageY - offsetY - offset.top
 		// Put the food in the world with a random image
 		$(".game").append('<img class="ingredient-holding" food="'+name+'" src="Assets/Food/'+name+device.randomNum(1, ingredients[name])+'.png" style="left:'+left+'px;top:'+top+'px">')
 		// Make the mouse a pointer
@@ -60,10 +63,10 @@ function DropIngredient(i, e) {
 
 var bottleTimeout = {"Hot":false,"Pizza":false}
 // Pick up and use a bottle
-function UseBottle(bottle, mouse) {
+function UseBottle(bottle, mouse, offset) {
 	if(app.currentState() == "Game" && !$(".bottle-holding:not(.dropped)").length) {
 		// Get the mouse position
-		var left = mouse.pageX-offsetX-offsetB, top = mouse.pageY-offsetY-offsetB
+		var left = mouse.pageX-offsetX-offsetB-offset.left, top = mouse.pageY-offsetY-offsetB-offset.top
 		// Put the bottle in the world
 		$(".game").append('<img class="bottle-holding" src="Assets/Bottles/'+bottle+'_Using.png" style="left:'+left+'px;top:'+top+'px"><img class="bottle-squeezing" src="Assets/Bottles/'+bottle+'_Squeeze.gif" style="left:'+(left+64.5)+'px;top:'+(top+217)+'px" type="'+bottle+'">')
 		
