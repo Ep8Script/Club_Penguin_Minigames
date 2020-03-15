@@ -3,6 +3,7 @@ Recreating a few of Club Penguin's minigames in HTML5.
 
 # Available games
 * [Bean Counters](https://ep8script.github.io/Club_Penguin_Minigames/BeanCounters)
+* [Pizzatron 3000](https://ep8script.github.io/Club_Penguin_Minigames/Pizzatron)
 * [Sled Racing](https://ep8script.github.io/Club_Penguin_Minigames/SledRacing)
 
 # Changelog
