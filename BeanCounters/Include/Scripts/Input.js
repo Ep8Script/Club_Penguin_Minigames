@@ -63,22 +63,24 @@ function handleInput() {
 
 // Allow mouse controls on PC
 if(!device.isSwitch) {
-	$("body").on("mousemove", ".game", function(e) {
+	$("body").on("mousemove", ".play-area", function(e) {
 		if(app.currentState() == "Game") {
 			if(!dead && $(".truck.ready").length) {
-				playerPos = e.pageX - 225
+				playerPos = e.pageX - 275
 				// Keep the player in the boundaries
 				if(playerPos < 90) {
 					// Reset them to left maximum
 					playerPos = 90
 				}
-				else if(playerPos > 680) {
+				else if(playerPos > 580) {
 					// Reset to right maximum
-					playerPos = 680
+					playerPos = 580
 				}
 			}
 		}
-	}).on("click", ".game", function() {
-		DropBag()
+	}).on("click", function() {
+		if(app.currentState() == "Game") {
+			DropBag()
+		}
 	})
 }

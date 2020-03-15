@@ -1,8 +1,10 @@
-body {
+body:not(.sorry) {
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-o-user-select: none;
+	background-image: url("../Assets/Background.png");
+	background-size: cover;
 	color: white;
 	font-family: sans-serif;
 	user-select: none;
@@ -11,9 +13,6 @@ body {
 	background-color: black;
 	font-size: 110px;
 	text-align: center;
-}
-.loading {
-	background-color: #0184CE;
 }
 .loading-wrapper {
 	bottom: 25%;
@@ -30,19 +29,11 @@ body {
 	margin: 8px auto;
 	width: 55px;
 }
-.big-screen .loading-icon {
-	height: 55px;
-	margin-left: 50%;
-	margin-top: 19%;
-}
 .loading-outer {
 	height: 25px;
 	margin: auto;
 	outline: 1px solid black;
 	width: 200px;
-}
-.big-screen .loading-outer {
-	margin-left: 46%;
 }
 .loading-bar-wrapper {
 	height: 15px;
@@ -63,20 +54,17 @@ body {
 	position: relative;
 	text-align: center;
 }
-.big-screen .loading-text {
-	width: 102.15%;
-}
 .in-game {
 	-webkit-text-stroke: 1px #0184CE;
-	background-image: url("../Assets/Background.png");
-	background-size: cover;
 	font-weight: bold;
 }
 .hid {
 	display: none;
 }
+.loading .game {
+	background-color: #0184CE;
+}
 .game {
-	height: 100%;
 	margin: auto;
 	max-height: 610px;
 	min-height: 610px;
@@ -84,10 +72,6 @@ body {
 	overflow: hidden;
 	position: relative;
 	width: 1000px;
-}
-.big-screen .game {
-	top: 18.5%;
-	transform: scale(1.5);
 }
 .background {
 	background: linear-gradient(0deg, rgba(0,94,139,1) 87%, rgba(2,81,116,1) 100%);

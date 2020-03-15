@@ -5,7 +5,7 @@ function Play() {
 	// Create the game arena
 	playerPos = 360
 	app.setState("Game")
-	$(".menu").toggleClass("game menu")
+	$(".menu").toggleClass("play-area menu")
 	$(".game-menu").addClass("background").removeClass("game-menu").attr("src", "Assets/Background.png")
 	$(".start-button, .vr-start, .logo").remove()
 	$(".background").after('<div class="alert" style="display:none">Truck Unloaded!!</div>')
@@ -22,7 +22,7 @@ function Play() {
 function addBags() {
 	// Add the stacked bags and position them
 	var bottom = 5
-	$.each([1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,19,20], function() {
+	for(var i = 0; i < 20; i++) {
 		$(".stack").first().append('<div class="bag hid" style="bottom:'+bottom+'px"><img src="Assets/Hazards/Bag_3.png"></div>')
 		var b = $(".stack").first().find(".bag").last()
 		if(device.randomNum(1)) {
@@ -33,7 +33,7 @@ function addBags() {
 		}
 		b.find("img").css("transform", "rotate("+device.randomNum(13,15)+"deg)")
 		bottom += isVR?11:17
-	})
+	}
 }
 
 app.mainLoop(function() {
@@ -62,11 +62,11 @@ app.mainLoop(function() {
 			}
 			
 			// Loop through each falling hazard / bag
-			$(".game").first().find(".hazard").each(function() {
+			$(".play-area").first().find(".hazard").each(function() {
 				// Check if the player's hitbox is colliding
 				if(collidesWith($(".hitbox").first()[0], this) && $(this).attr("fallin")) {
 					// Remove the hazard
-					$(this).remove()
+					$(this).attr("gone",1).remove()
 					// Check which hazard it is
 					switch($(this).attr("name")) {
 						case "Bag":
@@ -75,6 +75,9 @@ app.mainLoop(function() {
 								holding++
 								// Add to the score
 								score += 2
+								// Play the catch sound
+								$(".catch").remove()
+								$("body").append('<audio autoplay class="catch" src="Assets/Sounds/Catch.mp3"></audio>')
 							}
 							else {
 								// The player is carrying too many bags and is dead
@@ -83,6 +86,9 @@ app.mainLoop(function() {
 							break
 						case "Life":
 							life++
+							// Play the 1-Up sound
+							$(".life").remove()
+							$("body").append('<audio autoplay class="life" src="Assets/Sounds/Life.mp3"></audio>')
 							break
 						default:
 							Dead($(this).attr("name"))
@@ -91,7 +97,7 @@ app.mainLoop(function() {
 			})
 			
 			// Display the current stack correctly
-			if($(".game").first().find(".stack .bag:not(.hid)").length !== stackHeight) {
+			if($(".play-area").first().find(".stack .bag:not(.hid)").length !== stackHeight) {
 				$(".stack").first().find(".bag").each(function(i) {
 					if(i+1 <= stackHeight) {
 						$(this).removeClass("hid")
@@ -137,6 +143,13 @@ function Dead(type) {
 			})
 		})
 		life--
+		// Play the hit sound
+		$(".hit").remove()
+		var s = type+"_Land"
+		if(type == "Bag") {
+			s = "Hit"
+		}
+		$("body").append('<audio autoplay class="hit" src="Assets/Sounds/'+s+'.mp3"></audio>')
 	}
 	else {
 		setTimeout(function() {
@@ -148,59 +161,69 @@ function Dead(type) {
 
 // Discaring a bag onto the platform
 function DropBag() {
-	if(holding && playerPos < (isVR?46:135) && $(".truck.ready").length) {
+	if(holding && playerPos < (isVR?46:135) && $(".truck.ready").length && stackHeight < 20) {
 		// Remove a bag from the hand
 		holding -= 1
 		// Add to the score
 		score += 3
 		// Add 1 to the stack
 		stackHeight += 1
+		// Play the place sound
+		$(".place").remove()
+		$("body").append('<audio autoplay class="place" src="Assets/Sounds/Place.mp3"></audio>')
 		// Check the stack size
 		if(stackHeight == 20) {
-			if(truck < 5) {
-				// Display text
-				$(".alert").first().show()
-				// Stop the hazards
-				clearInterval(spawnInterval)
-				// Make the truck leave
-				var truckLeave = function() {
-					if(parseInt($(".truck").first().css("right")) <= -316) {
-						// Hide the text and change it
-						$(".alert").first().hide().text("Next Truck!!")
-						// Make the truck come back
-						setTimeout(truckLoad, 200)
+			setTimeout(function() {
+				if(truck < 5) {
+					// Display text
+					$(".alert").first().show()
+					// Stop the hazards
+					clearInterval(spawnInterval)
+					// Play the truck sound
+					$(".truck-sound").remove()
+					$("body").append('<audio autoplay class="truck-sound" src="Assets/Sounds/Truck.mp3"></audio>')
+					// Make the truck leave
+					var truckLeave = function() {
+						if(parseInt($(".truck").first().css("right")) <= -316) {
+							// Hide the text and change it
+							$(".alert").first().hide().text("Next Truck!!")
+							// Play the reverse sound
+							$("body").append('<audio autoplay class="truck-sound" src="Assets/Sounds/TruckReverse.mp3"></audio>')
+							// Make the truck come back
+							setTimeout(truckLoad, 200)
+						}
+						else {
+							$(".truck").first().removeClass("ready").css("right", "-=9")
+							setTimeout(truckLeave, 40)
+						}
 					}
-					else {
-						$(".truck").first().removeClass("ready").css("right", "-=9")
-						setTimeout(truckLeave, 40)
+					setTimeout(truckLeave, 8)
+					var truckLoad = function() {
+						if(parseInt($(".truck").first().css("right")) >= -5) {
+							// Hide the text again
+							$(".alert").first().hide().text("Truck Unloaded!!")
+							// Reset all the variables and start the next level
+							holding = 0
+							moving = 0
+							playerPos = isVR?200:360
+							stackHeight = 0
+							truck++
+							$(".truck").first().addClass("ready")
+							StartHazards()
+						}
+						else {
+							// Show the text
+							$(".alert").first().show()
+							$(".truck").first().css("right", "+=9")
+							setTimeout(truckLoad, 40)
+						}
 					}
 				}
-				setTimeout(truckLeave, 8)
-				var truckLoad = function() {
-					if(parseInt($(".truck").first().css("right")) >= -5) {
-						// Hide the text again
-						$(".alert").hide().text("Truck Unloaded!!")
-						// Reset all the variables and start the next level
-						holding = 0
-						moving = 0
-						playerPos = isVR?200:360
-						stackHeight = 0
-						truck++
-						$(".truck").first().addClass("ready")
-						StartHazards()
-					}
-					else {
-						// Show the text
-						$(".alert").first().show()
-						$(".truck").first().css("right", "+=9")
-						setTimeout(truckLoad, 40)
-					}
+				else {
+					alert("Congratulations! All the trucks have been unloaded! You achieved a score of "+score+"!")
+					GameOver()
 				}
-			}
-			else {
-				alert("Congratulations! All the trucks have been unloaded! You achieved a score of "+score+"!")
-				GameOver()
-			}
+			}, 80)
 		}
 	}
 }

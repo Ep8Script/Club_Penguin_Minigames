@@ -5,32 +5,41 @@ require("Include/Scripts/Maps")
 require("Include/Scripts/Multiplayer")
 require("Include/Scripts/Tiles")
 
-// Preload images with optional callback, and percentage callback
+// Preload assets with optional callback, and percentage callback
 function preload(a, c, pc) {
 	var count = a.length
 	var loaded = 0
-	$.each(a, function(index, i) {
-		$('<img>').attr('src', i).on('load error', function(e) {
-			loaded++
-			if(loaded == count && typeof c == "function") {
-				c()
-			}
-			if(typeof pc == "function") {
-				var percent = (loaded / count) * 100
-				pc(percent)
-			}
-		})
+	var assetLoaded = function() {
+		loaded++
+		if(loaded == count && typeof c == "function") {
+			c()
+		}
+		if(typeof pc == "function") {
+			var percent = (loaded / count) * 100
+			pc(percent)
+		}
+	}
+	$.each(a, function(i, f) {
+		if(f.endsWith(".mp3")) {
+			let audio = new Audio()
+			audio.src = f
+			audio.addEventListener("canplaythrough", assetLoaded, false)
+			audio.addEventListener("error", assetLoaded, false)
+		}
+		else {
+			$("<img>").attr("src", f).on("load error", assetLoaded)
+		}
 	})
 }
 
 app.onLoad(function() {
-	// Check if it's a mobile device on load
+	// Check for a mobile client
 	if(testMobile()) {
-		app.setState("Fail")
+		app.setState("Mobile")
 		$("body").toggleClass("loading sorry").html("Sorry :(")
 		setTimeout(function() {
-			alert("Unfortunately, this web app is not supported on mobile devices. Please try it out on a PC or laptop instead.")
-		}, 100)
+			alert("Sorry, this game app is not supported on mobile devices. Please play on a PC or laptop instead.")
+		}, 1)
 		return
 	}
 	app.setState("Loading")
@@ -41,8 +50,8 @@ app.onLoad(function() {
 	var pl = a+"Players/"
 	var t = a+"Tube/"
 	// Preload all the assets
-	var pre = [a+"Background.png",a+"Clouds.png",a+"FinishLine.png",a+"MapCorner.png",a+"Timer.png",a+"UserIcon.png",c+"1.gif",c+"2.gif",h+"20_A.png",h+"Finish.png",h+"Start.png",p+"back.png",p+"crashed.gif",p+"default.png",p+"left.png",p+"right.png",pl+"Other.png",pl+"Self.png",t+"default.png",t+"flipped.png",t+"left.png",t+"right.png",t+"shadow.png"]
-	for (var i = 0; i < 20; i++) { 
+	var pre = [a+"Background.png",a+"Clouds.png",a+"Finish.mp3",a+"FinishLine.png",a+"MapCorner.png",a+"Music.mp3",a+"Timer.png",a+"UserIcon.png",c+"1.gif",c+"2.gif",h+"20_A.png",h+"Finish.png",h+"Start.png",p+"back.png",p+"crashed.gif",p+"default.png",p+"left.png",p+"right.png",pl+"Other.png",pl+"Self.png",t+"default.png",t+"flipped.png",t+"left.png",t+"right.png",t+"shadow.png"]
+	for (var i = 0; i <= 20; i++) { 
 		pre.push(h+i+".png")
 	}
 	preload(pre, function() {
@@ -61,12 +70,6 @@ app.onLoad(function() {
 				Lobby()
 			})
 		}, 400)
-		// Preload audio files
-		var files = [a+"Music.mp3", a+"Finish.mp3"]
-		$.each(files, function(i, file) {
-			var audio = new Audio()
-			audio.src = file
-		})
 	}, function(percent) {
 		$(".loading-bar").css("width",percent+"%")
 	})

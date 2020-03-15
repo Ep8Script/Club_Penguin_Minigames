@@ -24,8 +24,8 @@ function StartHazards() {
 
 // Create a new hazard
 function newHazard() {
-	var anvil = {name:"Anvil",chance:[],min:600,max:725}
-	var bag = {name:"Bag",chance:[],min:200,max:725}
+	var anvil = {name:"Anvil",chance:[],min:600,max:670}
+	var bag = {name:"Bag",chance:[],min:200,max:680}
 	var fish = {name:"Fish",chance:[],min:200,max:340}
 	var vase = {name:"Vase",chance:[],min:415,max:575}
 	var hazards = []
@@ -74,9 +74,9 @@ function newHazard() {
 	if(hazard) {
 		var img = hazard.name=="Bag"?"Bag_1":hazard.name
 	
-		$(".game").first().append('<img class="hazard '+hazard.name.toLowerCase()+'" name="'+hazard.name+'" style="bottom: 320px; left: 900px;" src="Assets/Hazards/'+img+'.png">')
+		$(".play-area").first().append('<img class="hazard '+hazard.name.toLowerCase()+'" name="'+hazard.name+'" style="bottom: 320px; left: 825px;" src="Assets/Hazards/'+img+'.png">')
 		 
-		var $h = $(".game").first().find(".hazard").last()
+		var $h = $(".play-area").first().find(".hazard").last()
 		var fall = 4
 		var launchTo = device.randomNum(hazard.min,hazard.max)
 		if(launchTo > 470) {
@@ -86,6 +86,9 @@ function newHazard() {
 		var maxHeight = device.randomNum(390, 404)
 		
 		var move = function() {
+			if(!$h.length || $h.hasClass("broken") || $h.attr("gone")) {
+				return
+			}
 			if(parseInt($h.css("left")) > launchTo) {
 				$h.css("left", "-=10")
 			}
@@ -100,13 +103,16 @@ function newHazard() {
 			}
 			else if($h.attr("fallin")) {
 				if($h.attr("fallin") == fall) {
-					if(parseInt($h.css("bottom")) <= 25) {
+					if(parseInt($h.css("bottom")) <= 70) {
 						$h.addClass("broken")
 						if(hazard.name != "Life") {
 							$h.attr("src", "Assets/Hazards/"+hazard.name+"_Broken.png")
 							$h.delay(500).fadeOut("fast", function() {
 								$h.remove()
 							})
+							// Play the land sound
+							$("."+(hazard.name.toLowerCase())+"-land").remove()
+							$("body").append('<audio autoplay class="'+(hazard.name.toLowerCase())+'-land" src="Assets/Sounds/'+hazard.name+'_Land.mp3"></audio>')
 						}
 						else {
 							$h.fadeOut("fast", function() {
@@ -128,11 +134,9 @@ function newHazard() {
 			else {
 				$h.attr("fallin", 0)
 			}
-			if($h.length && !$h.hasClass("broken")) {
-				setTimeout(function() {
-					move()
-				}, 12)
-			}
+			setTimeout(function() {
+				move()
+			}, 12)
 		}
 		
 		// Wait a few ms before launching

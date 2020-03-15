@@ -1,0 +1,872 @@
+body:not(.sorry) {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	background-image: url("../Assets/Parlor.png");
+	background-size: cover;
+	color: white;
+	font-family: sans-serif;
+	touch-action: none;
+	user-select: none;
+}
+.sorry {
+	background-color: black;
+	font-size: 110px;
+	text-align: center;
+}
+.loading-wrapper {
+	bottom: 25%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+}
+.loading-flex {
+	display: flex;
+	flex-direction: column;
+}
+.loading-icon {
+	height: 55px;
+	margin: 8px auto;
+	width: 55px;
+}
+.loading-outer {
+	height: 25px;
+	margin: auto;
+	outline: 1px solid black;
+	width: 200px;
+}
+.loading-bar-wrapper {
+	height: 15px;
+	margin-left: 5px;
+	margin-top: 5px;
+	position: absolute;
+	width: 190px;
+}
+.loading-bar {
+	background-color: white;
+	height: 100%;
+	width: 0%;
+}
+.loading-text {
+	bottom: 15px;
+	font-size: 20px;
+	margin-top: 32px;
+	position: relative;
+	text-align: center;
+}
+.hid {
+	display: none;
+}
+.loading .game {
+	background-color: #0184CE;
+}
+.game {
+	margin: auto;
+	max-height: 610px;
+	min-height: 610px;
+	min-width: 1000px;
+	overflow: hidden;
+	position: relative;
+	width: 1000px;
+}
+.main-menu {
+	height: 630.5px;
+	margin-top: -15px;
+}
+.logo {
+	height: 250px;
+	left: 50px;
+	position: absolute;
+	top: 15px;
+}
+.candy-trigger {
+	border-radius: 100%;
+	bottom: 232px;
+	cursor: pointer;
+	height: 20px;
+	left: 20px;
+	position: absolute;
+	width: 20px;
+}
+.show-hitboxes .candy-trigger, .show-hitboxes .bottle-trigger:not([style*="pointer"]), .show-hitboxes .ingredient-trigger, .show-hitboxes .pizza-trigger {
+	background-color: black;
+	opacity: 0.6;
+}
+.start-button {
+	bottom: 65px;
+	cursor: pointer;
+	filter: drop-shadow(4px 5px 5px #222);
+	height: 45px;
+	left: 30px;
+	position: absolute;
+}
+.start-button:hover {
+	filter: brightness(1.035) drop-shadow(4px 5px 5px #222);
+}
+@font-face {
+	font-family: BurbankSmallBold;
+	src: url(BurbankSmallBold.ttf);
+}
+.start-text {
+	bottom: 67.5px;
+	color: brown;
+	font-family: BurbankSmallBold;
+	font-size: 29px;
+	font-weight: bold;
+	left: 30px;
+	pointer-events: none;
+	position: absolute;
+	text-align: center;
+	text-transform: uppercase;
+	width: 290px;
+}
+.background {
+	height: 350px;
+	left: -18px;
+	position: absolute;
+	top: -2px;
+}
+.conveyor-base {
+	bottom: -45px;
+	height: 344px;
+	left: -1px;
+	position: absolute;
+}
+.conveyor-belt {
+	bottom: 2px;
+	height: 203.5px;
+	left: -175px;
+	overflow: hidden;
+	position: absolute;
+	width: 118%;
+}
+.conveyor {
+	height: 100%;
+	position: relative;
+}
+.sauce-box {
+    height: 425px;
+    left: -27px;
+    position: absolute;
+    top: 148px;
+}
+.bottle-container {
+    height: 245px;
+    left: 17px;
+    overflow: hidden;
+    position: absolute;
+    top: 136.5px;
+	width: 210px;
+}
+.pizza-holder, .pizza-front {
+    height: 115px;
+    position: relative;
+    top: 130px;
+}
+.pizza-front {
+	left: -93.6px;
+	z-index: 2;
+}
+.pizza-bottle, .hot-bottle {
+    height: 300px;
+    position: absolute;
+}
+.pizza-bottle {
+    left: -51px;
+    top: -12px;
+}
+.hot-holder {
+    height: 150px;
+    left: 175px;
+    position: absolute;
+    top: 100px;
+}
+.hot-bottle {
+	left: 34px;
+	top: -10px;
+}
+.cheese-holder {
+    height: 135px;
+    left: 240px;
+    position: absolute;
+    top: 265px;
+}
+.seaweed-holder {
+    height: 110px;
+    left: 431px;
+    position: absolute;
+    top: 294px;
+}
+.shrimp-holder {
+    height: 118px;
+    left: 595px;
+    position: absolute;
+    top: 291px;
+}
+.squid-holder {
+    height: 120px;
+    left: 733px;
+    position: absolute;
+    top: 300.5px;
+}
+.fish-holder {
+    height: 103px;
+    left: 883px;
+    position: absolute;
+    top: 297px;
+}
+.menu {
+    height: 300px;
+    position: absolute;
+    right: 80px;
+    top: 15px;
+}
+.menu-screen {
+	font-family: BurbankSmallBold;
+    height: 216px;
+	overflow: hidden;
+    position: absolute;
+    right: 94px;
+	text-transform: uppercase;
+    top: 29px;
+    width: 408px;
+}
+.order {
+    color: darkblue;
+    font-size: 18px;
+    left: 8px;
+    position: absolute;
+    top: 3px;
+}
+.order-image {
+    height: 85px;
+    left: 20px;
+    position: absolute;
+    top: 50px;
+}
+.coins-label, .coins {
+    bottom: 5px;
+    color: black;
+    font-size: 25px;
+    position: absolute;
+    right: 80px;
+}
+.coins {
+	bottom: 5.5px;
+	font-size: 24px;
+	right: 10px;
+}
+.stats {
+    background-color: #ffc0cb52;
+    height: 85px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 140px;
+}
+.stats div {
+	color: black;
+    font-size: 17px;
+    position: absolute;
+	right: 14px;
+}
+.pizzas-made::before {
+    content: "Pizzas Made";
+    font-size: 15px;
+    left: -13px;
+    position: relative;
+    top: 0.5px;
+}
+.pizzas-left {
+    top: 25px;
+}
+.pizzas-left::before {
+    content: "Pizzas Left";
+    font-size: 15px;
+    left: -11px;
+    position: relative;
+}
+.mistakes {
+    top: 50px;
+}
+.mistakes::before {
+    content: "Mistakes";
+    font-size: 15px;
+    left: -34px;
+    position: relative;
+}
+.bottle-trigger {
+    border-radius: 25%;
+    cursor: pointer;
+    height: 155px;
+    position: absolute;
+    width: 55px;
+	z-index: 2;
+}
+.bottle-trigger.pizza {
+	left: 58px;
+	top: 217px;
+}
+.bottle-trigger.hot {
+	left: 142px;
+	top: 215px;
+}
+.ingredient-trigger {
+	cursor: pointer;
+	height: 66px;
+	position: absolute;
+	top: 313px;
+	z-index: 2;
+}
+.ingredient-trigger.cheese {
+    height: 64px;
+    left: 241px;
+    top: 316px;
+    width: 211.5px;
+}
+.ingredient-trigger.cheese.second {
+    height: 31px;
+    left: 293px;
+    top: 285px;
+    width: 109px;
+}
+.ingredient-trigger.seaweed {
+	left: 460px;
+	width: 136px;
+}
+.ingredient-trigger.seaweed.second, .ingredient-trigger.seaweed.third {
+    height: 8px;
+    left: 465px;
+    top: 305px;
+    width: 48px;
+}
+.ingredient-trigger.seaweed.third {
+    left: 555px;
+    width: 22px;
+}
+.ingredient-trigger.shrimp {
+	left: 604px;
+	width: 139px;
+}
+.ingredient-trigger.shrimp.second, .ingredient-trigger.shrimp.third {
+    height: 9px;
+    left: 619px;
+    top: 304.5px;
+    width: 54px;
+}
+.ingredient-trigger.shrimp.third {
+    left: 687px;
+    width: 30px;
+}
+.ingredient-trigger.squid {
+	left: 748px;
+	width: 137px;
+}
+.ingredient-trigger.fish {
+	height: 64px;
+	left: 892px;
+	top: 315px;
+	width: 110px;
+}
+.ingredient-holding, .bottle-holding {
+	height: 325px;
+	pointer-events: none;
+	position: absolute;
+	z-index: 4;
+}
+.ingredient-holding.dropped {
+	transform: scale(0.8);
+}
+.bottle-holding {
+	height: 300px;
+}
+.bottle-holding.dropped {
+	transform: scale(0.9);
+}
+.pizza-dough {
+    bottom: 20px;
+    height: 180px;
+    position: absolute;
+}
+.pizza-dough img {
+    height: 100%;
+    position: absolute;
+}
+.pizza-dough .cheese {
+	z-index: 1;
+}
+.pizza-dough .food:not(.cheese) {
+	z-index: 2;
+}
+.pizza-trigger {
+    border-radius: 100%;
+    height: 165px;
+    left: 9px;
+    position: absolute;
+    top: 5px;
+    width: 260px;
+    z-index: 5;
+}
+.bottle-hitbox .pizza-trigger {
+    height: 145px;
+    left: 15px;
+    top: -105px;
+    width: 250px;
+}
+.order-info {
+    color: darkblue;
+    font-size: 15px;
+    left: 185px;
+    position: absolute;
+}
+.cheese-order {
+	top: 60px;
+}
+.sauce-order {
+	top: 90px;
+}
+.extra-1 {
+    top: 131px;
+}
+.extra-2 {
+    top: 165px;
+}
+.extra-3 {
+    top: 170px;
+}
+.extra-4 {
+    top: 195px;
+}
+.order-tick {
+	height: 23px;
+	left: 165px;
+	position: absolute;
+}
+.cheese-tick {
+	top: 56px;
+}
+.sauce-tick {
+	top: 86px;
+}
+.extra-1-tick {
+    top: 127px;
+}
+.extra-2-tick {
+    top: 161px;
+}
+.extra-3-tick {
+    top: 166px;
+}
+.extra-4-tick {
+    top: 191px;
+}
+.bottle-squeezing {
+    height: 75px;
+    position: absolute;
+    z-index: 4;
+}
+.bottle-squeezing[src*="Pizza"] {
+    height: 65px;
+	margin-left: -4px;
+	margin-top: 29px;
+}
+.pizza-dough .pizza-sauce {
+	animation-iteration-count: 1;
+	background-size: cover;
+	height: 38px;
+	position: absolute;
+	transform: scale(1.8);
+	width: 33px;
+}
+.pizza-dough .pizza-sauce[type$="hot"] {
+	width: 37px;
+}
+@keyframes pizza-1 {
+	100% {
+	   background-position: -294px; 
+	}
+}
+.pizza-1 {
+	background: url(../Assets/Pizza/Sauce/Pizza1.png);
+}
+.pizza-1:not(.full) {
+	animation: pizza-1 0.5s forwards steps(9);
+}
+.pizza-1.full {
+	background-position: -294px;
+}
+.pizza-2 {
+	animation: pizza-1 0.5s forwards steps(9);
+	background: url(../Assets/Pizza/Sauce/Pizza2.png);
+}
+.pizza-3 {
+	animation: pizza-1 0.5s forwards steps(9);
+	background: url(../Assets/Pizza/Sauce/Pizza3.png);
+}
+@keyframes pizza-4 {
+	100% {
+	   background-position: -299px; 
+	}
+}
+.pizza-4 {
+	animation: pizza-4 0.5s forwards steps(9);
+	background: url(../Assets/Pizza/Sauce/Pizza4.png);
+}
+@keyframes hot-1 {
+	100% {
+	   background-position: -343px; 
+	}
+}
+.hot-1 {
+	background: url(../Assets/Pizza/Sauce/Hot1.png);
+}
+.hot-1:not(.full) {
+	animation: hot-1 0.5s forwards steps(9);
+}
+.hot-1.full {
+	background-position: -343px
+}
+@keyframes hot-2 {
+	100% {
+	   background-position: -351px; 
+	}
+}
+.hot-2 {
+	animation: hot-2 0.5s forwards steps(9);
+	background: url(../Assets/Pizza/Sauce/Hot2.png);
+}
+@keyframes hot-3 {
+	100% {
+	   background-position: -312px; 
+	}
+}
+.hot-3 {
+	animation: hot-3 0.5s forwards steps(9);
+	background: url(../Assets/Pizza/Sauce/Hot3.png);
+}
+@keyframes hot-4 {
+	100% {
+	   background-position: -312.5px; 
+	}
+}
+.hot-4 {
+	animation: hot-4 0.5s forwards steps(9);
+	background: url(../Assets/Pizza/Sauce/Hot4.png);
+	width: 36.4px;
+}
+.bottle-hitbox, .hold {
+	cursor: pointer;
+}
+.sauce-pizza {
+    border-radius: 100%;
+    height: 96%;
+    left: 4px;
+    overflow: hidden;
+    position: absolute;
+    top: 3px;
+    width: 265px;
+}
+.pizza-sauce.full {
+    left: 122px;
+    transform: scale(10);
+    top: 40px;
+}
+@keyframes pizza-splat {
+	100% {
+	   background-position: -2468px; 
+	}
+}
+.pizza-splat {
+	animation: pizza-splat 0.75s forwards steps(8);
+    background-position: -2468px;
+	background-size: cover !important;
+    height: 180px;
+    left: -18px;
+    position: absolute;
+    top: 14px;
+    transform: scale(1.25);
+    width: 309px;
+	z-index: 3;
+}
+.pizza-splat.hot {
+	background: url(../Assets/Pizza/Hot_Splat.png);
+}
+.pizza-splat.pizza {
+	background: url(../Assets/Pizza/Pizza_Splat.png);
+}
+.debug {
+    color: lime;
+    font-size: 20px;
+    left: 10px;
+	opacity: 0;
+    position: absolute;
+    top: 10px;
+	transition: opacity 0.2s linear;
+	z-index: 2;
+}
+.show-hitboxes .debug {
+	opacity: 1;
+}
+.done {
+    font-size: 55px;
+    left: 15px;
+}
+.earned {
+    font-size: 25px;
+    left: 17px;
+    top: 83px;
+}
+.tip {
+    font-size: 21px;
+    left: 18.5px;
+    top: 120px;
+}
+span.completed {
+	color: black;
+	font-weight: bold;
+	position: absolute;
+}
+img.completed {
+	bottom: 10px;
+	height: 95px;
+	left: 135px;
+	position: absolute;
+}
+/* Ingredients on the orders menu */
+.ingredient-orders {
+    bottom: 7px;
+    height: 70px;
+    left: 5px;
+    position: absolute;
+    width: 160px;
+}
+.ingredient-orders img {
+	height: 160px;
+	position: absolute;
+}
+.ingredient-orders .fish-1 {
+    bottom: -22px;
+    left: 5px;
+}
+.ingredient-orders .fish-2 {
+    bottom: -43px;
+    left: 5px;
+}
+.ingredient-orders .fish-3  {
+    bottom: -64px;
+    left: 5px;
+}
+.ingredient-orders .fish-4 {
+    bottom: -27px;
+    left: 54px;
+}
+.ingredient-orders .fish-5 {
+    bottom: -49px;
+    left: 54px;
+}
+.ingredient-orders .seaweed-1 {
+    bottom: -42px;
+    left: -22.5px;
+}
+.ingredient-orders .seaweed-2 {
+    bottom: -43px;
+    left: -10.5px;
+}
+.ingredient-orders .seaweed-3 {
+    bottom: -40px;
+    left: 15.5px;
+}
+.ingredient-orders .seaweed-4 {
+    bottom: -44px;
+    left: 31.5px;
+}
+.ingredient-orders .seaweed-5 {
+    bottom: -41px;
+    left: 53.5px;
+}
+.ingredient-orders .shrimp-1 {
+	bottom: -40px;
+    left: -35px;
+	transform: rotate(-5deg);
+}
+.ingredient-orders .shrimp-2 {
+	bottom: -46px;
+    left: -12px;
+	transform: rotate(30deg);
+}
+.ingredient-orders .shrimp-3 {
+	bottom: -38px;
+    left: 9px;
+	transform: rotate(15deg);
+}
+.ingredient-orders .shrimp-4 {
+	bottom: -46px;
+    left: 34px;
+	transform: rotate(-10deg);
+}
+.ingredient-orders .shrimp-5 {
+    bottom: -35px;
+    left: 66px;
+    transform: rotate(-13deg);
+}
+.ingredient-orders img[src*='Squid'] {
+	height: 140px;
+}
+.ingredient-orders .squid-1 {
+    bottom: -30px;
+	left: -20px;
+    transform: rotate(23deg);
+}
+.ingredient-orders .squid-2 {
+    bottom: -48px;
+    left: 20px;
+    transform: rotate(15deg);
+}
+.ingredient-orders .squid-3 {
+    bottom: -21px;
+    left: 20px;
+    transform: rotate(-10deg);
+}
+.ingredient-orders .squid-4 {
+    bottom: -35px;
+    left: 60px;
+    transform: rotate(93deg);
+}
+.ingredient-orders .squid-5 {
+    bottom: -40px;
+    left: 93px;
+    transform: rotate(110deg);
+}
+.ingredient-2 {
+	left: 88px;
+}
+.ingredient-2.ingredient-fish {
+    bottom: 2px;
+    left: 66px;
+}
+.ingredient-2.ingredient-squid {
+	left: 70px;
+}
+.menu-screen[total='5'] .ingredient-1 {
+    left: -5px;
+}
+.menu-screen[total='5'] .ingredient-2 {
+    bottom: -1px;
+    left: 51px;
+    transform: rotate(15deg);
+}
+.menu-screen[total='5'] .ingredient-3 {
+    bottom: 35px;
+    left: 106px;
+    transform: rotate(-5deg);
+}
+.menu-screen[total='5'] .squid-1 {
+	height: 120px;
+}
+.menu-screen[total='5'] .ingredient-4 {
+    bottom: -35px;
+    left: 62px;
+}
+.menu-screen[total='5'] .extra-1 {
+    top: 118px;
+}
+.menu-screen[total='5'] .extra-1-tick {
+    top: 114px;
+}
+.menu-screen[total='5'] .extra-2 {
+    top: 145px;
+}
+.menu-screen[total='5'] .extra-2-tick {
+    top: 141px;
+}
+.ending {
+    height: 632.5px;
+    margin-left: -1px;
+    margin-top: -15px;
+	position: absolute;
+}
+.ending ~ span, .ending ~ div {
+	color: black;
+	font-size: 18px;
+	font-family: BurbankSmallBold;
+	left: 30px;
+	position: absolute;
+	text-transform: uppercase;
+}
+.score {
+    color: white !important;
+    font-size: 48px !important;
+    font-weight: bold;
+    top: 2px;
+    -webkit-text-stroke: 0.5px black;
+}
+.pizzas-sold {
+    top: 80px;
+}
+div.pizzas-sold  {
+    left: 155px !important;
+    text-align: right;
+    width: 50px;
+}
+.sales {
+    top: 105px;
+}
+div.sales  {
+    left: 155px !important;
+    text-align: right;
+	top: 105px;
+    width: 50px;
+}
+.sales-coins {
+    left: 220px !important;
+    top: 105px;
+}
+.tips {
+    top: 130px;
+}
+div.tips  {
+    left: 155px !important;
+    text-align: right;
+	top: 130px;
+    width: 50px;
+}
+.tips-coins {
+	left: 220px !important;
+	top: 130px;
+}
+.total {
+    font-size: 25px !important;
+    top: 170px;
+}
+div.total {
+    font-size: 25px !important;
+    left: 155px !important;
+    text-align: right;
+    top: 170px;
+    width: 50px;
+}
+.total-coins {
+    font-size: 25px !important;
+    left: 220px !important;
+    top: 170px;
+}
+.end-button, .end-text {
+    bottom: 3px;
+    color: white !important;
+    font-size: 24px !important;
+    height: 80px;
+    left: 55px;
+    position: absolute !important;
+    text-align: center;
+    width: 200px;
+    -webkit-text-stroke: 0.7px #a01010;
+}
+.end-button {
+	cursor: pointer;
+}
+.end-text {
+    bottom: -13px;
+    left: 61px !important;
+    pointer-events: none;
+}

@@ -30,7 +30,7 @@ function VRStart() {
 				$(this).remove()
 				// Create the game arena
 				app.setState("Game")
-				$(".left-eye").html('<div class="game"><img class="background" src="Assets/Background.png"><div class="alert" style="display:none">Truck Unloaded!!</div><img class="platform" src="Assets/Platform.png"><div class="stack"></div><div class="player" style="left: 200px;"><div class="hitbox"></div><img src="Assets/Player/0.png"></div><div class="badluck" style="display:none">Try Again...</div><div class="scoreboard">Lives: <span class="lives">3</span> Truck: <span class="truck-num">1</span> Score: <span class="score">0</span></div><img class="truck ready" src="Assets/Truck.png"></div>')
+				$(".left-eye").html('<div class="play-area"><img class="background" src="Assets/Background.png"><div class="alert" style="display:none">Truck Unloaded!!</div><img class="platform" src="Assets/Platform.png"><div class="stack"></div><div class="player" style="left: 200px;"><div class="hitbox"></div><img src="Assets/Player/0.png"></div><div class="badluck" style="display:none">Try Again...</div><div class="scoreboard">Lives: <span class="lives">3</span> Truck: <span class="truck-num">1</span> Score: <span class="score">0</span></div><img class="truck ready" src="Assets/Truck.png"></div>')
 				addBags()
 				//StartHazards()
 			}
