@@ -11,6 +11,7 @@ body:not(.sorry) {
 }
 .sorry {
 	background-color: black;
+	color: white;
 	font-size: 110px;
 	text-align: center;
 }

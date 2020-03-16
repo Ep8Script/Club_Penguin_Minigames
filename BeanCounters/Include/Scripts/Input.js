@@ -66,7 +66,7 @@ if(!device.isSwitch) {
 	$("body").on("mousemove", ".play-area", function(e) {
 		if(app.currentState() == "Game") {
 			if(!dead && $(".truck.ready").length) {
-				playerPos = e.pageX - 140 - $(this).offset().left
+				playerPos = e.pageX - 140 - $(".game").get(0).offsetLeft
 				// Keep the player in the boundaries
 				if(playerPos < 90) {
 					// Reset them to left maximum

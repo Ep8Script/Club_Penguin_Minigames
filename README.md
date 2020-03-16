@@ -60,3 +60,5 @@ Recreating a few of Club Penguin's minigames in HTML5.
 ### v2.0.1
 * Fixed an issue in Bean Counters and Pizzatron causing the cursor position to be inaccurate on larger displays.
 	* Thanks to [Maschell](https://github.com/Maschell) for the quick find!
+### v2.0.2
+* Fixed an issue causing the mobile warning to not display properly.

@@ -5,6 +5,49 @@ $("body").on("click", ".candy-trigger", function() {
 	StartGame()
 }).on("click", ".end-button", function() {
 	location.reload()
+}).on("mousedown", ".ingredient-trigger", function(e) {
+	if(e.which == 1) {
+		var $i = $(this)
+		// Check that it's a valid ingredient and get it
+		Object.keys(ingredients).forEach(function(i) {
+			if($i.hasClass(i.toLowerCase())) {
+				GetIngredient(i, e, $(".game").get(0))
+				return
+			}
+		})
+	}
+}).on("mousedown", ".bottle-trigger", function(e) {
+	var $b = $(this)
+	// Get the bottle
+	bottles.forEach(function(b) {
+		if($b.hasClass(b.toLowerCase())) {
+			UseBottle(b, e, $(".game").get(0))
+		}
+	})
+}).on("mousemove", function(e) {
+	// If there's an object being held
+	var $b = $(".bottle-holding:not(.dropped)"), $i = $(".ingredient-holding:not(.dropped)"), $s = $(".bottle-squeezing"), o = $(".game").get(0)
+	var l = e.pageX-offsetX-o.offsetLeft, t = e.pageY-offsetY-o.offsetTop
+	if($b.length) {
+		$b.css("left",l-offsetB).css("top",t-offsetB)
+		if($s.length) {
+			$s.css("left",l-offsetB+64.5).css("top",t-offsetB+217)
+		}
+	}
+	else if($i.length) {
+		$i.css("left",l).css("top",t)
+	}
+	mousePos = e
+}).on("mouseup mouseleave", function(e) {
+	// If there's an object being held
+	var $b = $(".bottle-holding:not(.dropped)")
+	var $i = $(".ingredient-holding:not(.dropped)")
+	if($b.length) {
+		DropBottle($b)
+	}
+	else if($i.length) {
+		DropIngredient($i,e)
+	}
 })
 
 // Toggle hitbox visibility (used for debugging)
@@ -14,55 +57,6 @@ $(window).keydown(function(e) {
 		setCookie("showHitboxes", 1-(getCookie("showHitboxes")||1),365)
 	}
 })
-
-// Get the mouse position
-function StartMouse() {
-	$(".game").on("mousedown", ".ingredient-trigger", function(e) {
-		if(e.which == 1) {
-			var $i = $(this), o = $(".game").offset()
-			// Check that it's a valid ingredient and get it
-			Object.keys(ingredients).forEach(function(i) {
-				if($i.hasClass(i.toLowerCase())) {
-					GetIngredient(i,e,o)
-					return
-				}
-			})
-		}
-	}).on("mousedown", ".bottle-trigger", function(e) {
-		var $b = $(this), o = $(".game").offset()
-		// Get the bottle
-		bottles.forEach(function(b) {
-			if($b.hasClass(b.toLowerCase())) {
-				UseBottle(b,e,o)
-			}
-		})
-	}).on("mousemove", function(e) {
-		// If there's an object being held
-		var $b = $(".bottle-holding:not(.dropped)"), $i = $(".ingredient-holding:not(.dropped)"), $s = $(".bottle-squeezing"), o = $(this).offset()
-		var l = e.pageX-offsetX-o.left, t = e.pageY-offsetY-o.top
-		if($b.length) {
-			$b.css("left",l-offsetB).css("top",t-offsetB)
-			if($s.length) {
-				$s.css("left",l-offsetB+64.5).css("top",t-offsetB+217)
-			}
-		}
-		else if($i.length) {
-			$i.css("left",l).css("top",t)
-		}
-		mousePos = e
-	}).on("mouseup mouseleave", function(e) {
-		// If there's an object being held
-		var $b = $(".bottle-holding:not(.dropped)")
-		var $i = $(".ingredient-holding:not(.dropped)")
-		if($b.length) {
-			DropBottle($b)
-		}
-		else if($i.length) {
-			DropIngredient($i,e)
-		}
-	})
-}
-
 // Set cookies
 function setCookie(name, val, exdays) {
 	var d = new Date()

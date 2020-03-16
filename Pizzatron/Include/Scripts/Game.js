@@ -16,17 +16,14 @@ function StartGame() {
 		
 		// Set the order
 		order = orders[0]
-		
-		// Get the relative mouse movement
-		StartMouse()
 	}
 }
 
 // Pick up an ingredient
-function GetIngredient(name, mouse, offset) {
+function GetIngredient(name, mouse, game) {
 	if(app.currentState() == "Game" && !$(".ingredient-holding:not(.dropped)").length) {
 		// Get the mouse position
-		var left = mouse.pageX - offsetX - offset.left, top = mouse.pageY - offsetY - offset.top
+		var left = mouse.pageX - offsetX - game.offsetLeft, top = mouse.pageY - offsetY - game.offsetTop
 		// Put the food in the world with a random image
 		$(".game").append('<img class="ingredient-holding" food="'+name+'" src="Assets/Food/'+name+device.randomNum(1, ingredients[name])+'.png" style="left:'+left+'px;top:'+top+'px">')
 		// Make the mouse a pointer
@@ -63,10 +60,10 @@ function DropIngredient(i, e) {
 
 var bottleTimeout = {"Hot":false,"Pizza":false}
 // Pick up and use a bottle
-function UseBottle(bottle, mouse, offset) {
+function UseBottle(bottle, mouse, game) {
 	if(app.currentState() == "Game" && !$(".bottle-holding:not(.dropped)").length) {
 		// Get the mouse position
-		var left = mouse.pageX-offsetX-offsetB-offset.left, top = mouse.pageY-offsetY-offsetB-offset.top
+		var left = mouse.pageX-offsetX-offsetB-game.offsetLeft, top = mouse.pageY-offsetY-offsetB-game.offsetTop
 		// Put the bottle in the world
 		$(".game").append('<img class="bottle-holding" src="Assets/Bottles/'+bottle+'_Using.png" style="left:'+left+'px;top:'+top+'px"><img class="bottle-squeezing" src="Assets/Bottles/'+bottle+'_Squeeze.gif" style="left:'+(left+64.5)+'px;top:'+(top+217)+'px" type="'+bottle+'">')
 		
