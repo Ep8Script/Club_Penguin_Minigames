@@ -10,7 +10,7 @@ $(window).keydown(function(e) {
 
 // Handle button clicks
 $("body").on("click", ".play-again", function() {
-	location.reload()
+	parent.location.reload()
 }).on("click", ".solo", function() {
 	multiplayer = false
 	Init()

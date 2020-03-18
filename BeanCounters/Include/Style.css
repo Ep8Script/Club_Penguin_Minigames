@@ -3,11 +3,16 @@ body {
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-o-user-select: none;
-	background-image: url("../Assets/Shop.png");
-	background-size: cover;
 	color: white;
 	font-family: sans-serif;
+	margin: 0px;
+	padding: 0px;
+	touch-action: none;
 	user-select: none;
+}
+body:not(.frame) {
+	background-image: url("../Assets/Shop.png");
+	background-size: cover;
 }
 .loading-wrapper {
 	bottom: 25%;
@@ -57,17 +62,19 @@ body {
 .hid {
 	display: none;
 }
-.in-game {
-	background-color: black;
-}
 .loading .game {
 	background-color: #0184CE;
 }
+.game-box {
+    border: none;
+    height: 610px;
+    position: absolute;
+	transform-origin: top;
+    width: 100%;
+}
 .game {
+	height: 610px;
 	margin: auto;
-	max-height: 610px;
-	min-height: 610px;
-	min-width: 1000px;
 	overflow: hidden;
 	position: relative;
 	width: 1000px;

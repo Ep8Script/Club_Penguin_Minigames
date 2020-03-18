@@ -38,7 +38,7 @@ Recreating a few of Club Penguin's minigames in HTML5.
 * Updated Sled Racing.
 	* Fixed an issue causing a sprite swap to not properly occur for the first few frames of crashing.
 ### v1.1.4
-* Updated Sled Racing
+* Updated Sled Racing.
 	* Added a background image which stops the game from being surrounded by boring black bars on larger screens.
 	* Fixed an issue causing the sky image to extend past the game's borders.
 		* Thanks again to [Aurorum](https://github.com/Aurorum) for making these changes!
@@ -62,3 +62,8 @@ Recreating a few of Club Penguin's minigames in HTML5.
 	* Thanks to [Maschell](https://github.com/Maschell) for the quick find!
 ### v2.0.2
 * Fixed an issue causing the mobile warning to not display properly.
+### v2.1.0
+* Fixed an issue causing sound files to not be properly preloaded.
+* The minigames no longer display at 1080p and will now fill the entire screen space.
+* Updated Bean Counters.
+	* Increased the throwing distance for anvils and bags.

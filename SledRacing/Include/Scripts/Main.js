@@ -13,6 +13,7 @@ function preload(a, c, pc) {
 		loaded++
 		if(loaded == count && typeof c == "function") {
 			c()
+			$(".audioPreloaded").remove()
 		}
 		if(typeof pc == "function") {
 			var percent = (loaded / count) * 100
@@ -21,10 +22,11 @@ function preload(a, c, pc) {
 	}
 	$.each(a, function(i, f) {
 		if(f.endsWith(".mp3")) {
-			let audio = new Audio()
+			var audio = new Audio()
 			audio.src = f
 			audio.addEventListener("canplaythrough", assetLoaded, false)
 			audio.addEventListener("error", assetLoaded, false)
+			$("body").append('<audio class="audioPreloaded" muted="muted" preload="auto" src="'+f+'"></audio>')
 		}
 		else {
 			$("<img>").attr("src", f).on("load error", assetLoaded)

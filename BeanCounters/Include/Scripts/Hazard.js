@@ -24,8 +24,8 @@ function StartHazards() {
 
 // Create a new hazard
 function newHazard() {
-	var anvil = {name:"Anvil",chance:[],min:600,max:670}
-	var bag = {name:"Bag",chance:[],min:200,max:680}
+	var anvil = {name:"Anvil",chance:[],min:580,max:650}
+	var bag = {name:"Bag",chance:[],min:200,max:645}
 	var fish = {name:"Fish",chance:[],min:200,max:340}
 	var vase = {name:"Vase",chance:[],min:415,max:575}
 	var hazards = []

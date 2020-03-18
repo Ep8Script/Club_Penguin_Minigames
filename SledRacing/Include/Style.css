@@ -3,11 +3,15 @@ body:not(.sorry) {
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-o-user-select: none;
-	background-image: url("../Assets/Background.png");
-	background-size: cover;
 	color: white;
 	font-family: sans-serif;
+	margin: 0px;
+	padding: 0px;
 	user-select: none;
+}
+body:not(.frame) {
+	background-image: url("../Assets/Background.png");
+	background-size: cover;
 }
 .sorry {
 	background-color: black;
@@ -62,17 +66,23 @@ body:not(.sorry) {
 .hid {
 	display: none;
 }
-.loading .game {
-	background-color: #0184CE;
+.game-box {
+    border: none;
+    height: 610px;
+    position: absolute;
+	transform-origin: top;
+    width: 100%;
 }
 .game {
+	height: 610px;
 	margin: auto;
-	max-height: 610px;
-	min-height: 610px;
-	min-width: 1000px;
 	overflow: hidden;
 	position: relative;
+	transform-origin: top;
 	width: 1000px;
+}
+.loading .game {
+	background-color: #0184CE;
 }
 .background {
 	background: linear-gradient(0deg, rgba(0,94,139,1) 87%, rgba(2,81,116,1) 100%);

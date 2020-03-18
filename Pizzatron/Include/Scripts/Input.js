@@ -4,7 +4,7 @@ $("body").on("click", ".candy-trigger", function() {
 }).on("click", ".start-button", function() {
 	StartGame()
 }).on("click", ".end-button", function() {
-	location.reload()
+	parent.location.reload()
 }).on("mousedown", ".ingredient-trigger", function(e) {
 	if(e.which == 1) {
 		var $i = $(this)
@@ -49,14 +49,14 @@ $("body").on("click", ".candy-trigger", function() {
 		DropIngredient($i,e)
 	}
 })
-
-// Toggle hitbox visibility (used for debugging)
+// Toggle debug mode
 $(window).keydown(function(e) {
 	if(e.ctrlKey && e.which == 89) {
 		$(".game").toggleClass("show-hitboxes")
 		setCookie("showHitboxes", 1-(getCookie("showHitboxes")||1),365)
 	}
 })
+
 // Set cookies
 function setCookie(name, val, exdays) {
 	var d = new Date()

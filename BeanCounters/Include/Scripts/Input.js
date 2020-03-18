@@ -72,9 +72,9 @@ if(!device.isSwitch) {
 					// Reset them to left maximum
 					playerPos = 90
 				}
-				else if(playerPos > 580) {
+				else if(playerPos > 570) {
 					// Reset to right maximum
-					playerPos = 580
+					playerPos = 570
 				}
 			}
 		}
