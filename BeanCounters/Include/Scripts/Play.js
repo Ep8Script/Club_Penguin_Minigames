@@ -115,9 +115,6 @@ app.mainLoop(function() {
 		
 	}
 	handleInput()
-	
-	// Reset the zoom level
-	$("body").css("zoom", parent.innerWidth / parent.outerWidth)
 }, {fps:25})
 
 function Dead(type) {

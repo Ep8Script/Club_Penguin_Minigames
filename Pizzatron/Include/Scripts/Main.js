@@ -347,6 +347,4 @@ app.mainLoop(function() {
 			$(this).attr("draggable", false)
 		}
 	})
-	// Reset the zoom level
-	$("body").css("zoom", innerWidth / outerWidth)
 }, {allowCursor:true})

@@ -67,3 +67,5 @@ Recreating a few of Club Penguin's minigames in HTML5.
 * The minigames no longer display at 1080p and will now fill the entire screen space.
 * Updated Bean Counters.
 	* Increased the throwing distance for anvils and bags.
+### v2.1.1
+* Browser zoom has been re-enabled as it no longer has negative effects on the gameplay.

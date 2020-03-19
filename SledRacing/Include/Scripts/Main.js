@@ -91,7 +91,4 @@ app.mainLoop(function() {
 			}
 		})
 	}
-	
-	// Reset the zoom level
-	$("body").css("zoom", innerWidth / outerWidth)
 }, {allowCursor:true})
