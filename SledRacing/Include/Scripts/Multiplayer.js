@@ -1,5 +1,5 @@
-require("Include/Scripts/Endpoints")
-require("Include/Scripts/SocketIO")
+include("Include/Scripts/Endpoints")
+include("Include/Scripts/SocketIO")
 var multiplayer = false, players = [], server = io(Endpoints.PlatformURL,{autoConnect:false,reconnection:false}), startTimer = setInterval
 
 // The room is updated - start the countdown if necessary

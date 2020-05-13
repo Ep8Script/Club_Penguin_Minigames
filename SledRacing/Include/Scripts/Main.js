@@ -1,9 +1,9 @@
 // Import other files
-require("Include/Scripts/Game")
-require("Include/Scripts/Input")
-require("Include/Scripts/Maps")
-require("Include/Scripts/Multiplayer")
-require("Include/Scripts/Tiles")
+include("Include/Scripts/Game")
+include("Include/Scripts/Input")
+include("Include/Scripts/Maps")
+include("Include/Scripts/Multiplayer")
+include("Include/Scripts/Tiles")
 
 // Preload assets with optional callback, and percentage callback
 function preload(a, c, pc) {
